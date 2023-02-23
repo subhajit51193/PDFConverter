@@ -1,0 +1,18 @@
+
+    <table>
+        <thead>
+            <tr>Item</tr>
+            <tr>Quantity</tr>
+            <tr>Rate</tr>
+            <tr>Amount</tr>
+
+        </thead>
+        <tbody>
+            <tr th:each="item : ${items}">
+				<td th:text="${item.item}"></td>
+				<td th:text="${item.quantity}"></td>
+				<td th:text="${item.rate}"></td>
+				<td th:text="${item.amount}"></td>
+            </tr>
+        </tbody>
+    </table>
