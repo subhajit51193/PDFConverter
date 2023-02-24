@@ -1,14 +1,13 @@
 package com.pdf.service;
-
-import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
-import com.itextpdf.*;
+
+import org.springframework.stereotype.Service;
+
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
+import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.itextpdf.kernel.pdf.PdfWriter;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class DocumentGenerator {
@@ -19,14 +18,17 @@ public class DocumentGenerator {
 		
 		try {
 			
-			PdfWriter pdfWriter = new PdfWriter(byteArrayOutputStream);
-			DefaultFontProvider defaultFont = new DefaultFontProvider(false,true,false);
+			PdfWriter pdfwriter = new PdfWriter(byteArrayOutputStream);
+			
+			DefaultFontProvider defaultFont = new DefaultFontProvider(false, true, false);
+			
 			ConverterProperties converterProperties = new ConverterProperties();
+			
 			converterProperties.setFontProvider(defaultFont);
 			
-			HtmlConverter.convertToPdf(processedHtml, pdfWriter, converterProperties);
+			HtmlConverter.convertToPdf(processedHtml, pdfwriter, converterProperties);
 			
-			FileOutputStream fout = new FileOutputStream("/Users/ACER/Desktop/PDF/details.pdf");
+			FileOutputStream fout = new FileOutputStream("/Users/ACER/Desktop/PDF/sample.pdf");
 			
 			byteArrayOutputStream.writeTo(fout);
 			byteArrayOutputStream.close();
